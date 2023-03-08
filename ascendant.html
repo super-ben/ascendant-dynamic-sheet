@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8"/>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="version" content="1.2"/>
+   <title>Ascendant Character Sheet</title>
+   <h2 style="text-align:center;">Ascendant Character Sheet</h2>
+   <br>
+</head>
+<body>
+<link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css"
+      rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+<div class="container">
+   <div class="row">
+      <div class="col-4">
+         <table class="table">
+            <tr>
+               <th>Primary Attributes</th>
+               <th>Value</th>
+            </tr>
+            <tr>
+               <td>Might (MIG)</td>
+               <td><input type="number" placeholder="0" id="migScore" min="0" onchange="calcPrimary()"></td>
+            </tr>
+            <tr>
+               <td>Agility (AGI)</td>
+               <td><input type="number" placeholder="0" id="agiScore" min="0" onchange="calcPrimary()"></td>
+            </tr>
+            <tr>
+               <td>Valor (VAL)</td>
+               <td><input type="number" placeholder="0" id="valScore" min="0" onchange="calcPrimary()"></td>
+            </tr>
+            <tr>
+               <td>Resolve (RES)</td>
+               <td><input type="number" placeholder="0" id="resScore" min="0" onchange="calcPrimary()"></td>
+            </tr>
+            <tr>
+               <td>Insight (INS)</td>
+               <td><input type="number" placeholder="0" id="insScore" min="0" onchange="calcPrimary()"></td>
+            </tr>
+            <tr>
+               <td>Charisma (CHA)</td>
+               <td><input type="number" placeholder="0" id="charScore" min="0" onchange="calcPrimary()"></td>
+            </tr>
+         </table>
+         <table class="table">
+            <tr>
+               <th>Secondary Attributes</th>
+               <th>Value</th>
+            </tr>
+            <tr>
+               <td>Height</td>
+               <td><input type="number" placeholder="0" id="heightScore"></td>
+            </tr>
+            <tr>
+               <td>Weight</td>
+               <td><input type="number" placeholder="0" id="weightScore"></td>
+            </tr>
+            <tr>
+               <td>Running Speed</td>
+               <td><input type="number" placeholder="0" id="runSpeedScore"></td>
+            </tr>
+            <tr>
+               <td>Jumping Speed</td>
+               <td><input type="number" placeholder="0" id="jumpSpeedScore"></td>
+            </tr>
+            <tr>
+               <td>Carrying Capacity</td>
+               <td><input type="number" placeholder="0" id="carrCapScore"></td>
+            </tr>
+            <tr>
+               <td>Initiative</td>
+               <td><input type="number" placeholder="0" id="iniScore"></td>
+            </tr>
+            <tr>
+               <td>Income</td>
+               <td><input type="number" placeholder="0" id="incScore"></td>
+            </tr>
+            <tr>
+               <td>Reputation</td>
+               <td><input type="number" placeholder="0" id="repScore"></td>
+            </tr>
+            <tr>
+               <td>Passive Spotting</td>
+               <td><input type="number" placeholder="0" id="pasSpotScore"></td>
+            </tr>
+            <tr>
+               <td>Passive Listening</td>
+               <td><input type="number" placeholder="0" id="pasLisScore"></td>
+            </tr>
+         </table>
+      </div>
+      <div class="col-4">
+         <table class="table">
+            <tr>
+               <th>Character Name</th>
+               <th>
+               <td><input type="text" id="charName"></td>
+            </tr>
+         </table>
+         <table class="table">
+            <tr>
+               <th>Primary Attribute CPs</th>
+               <th>
+               <td><input type="number" placeholder="0" id="primAtCost"></td>
+            </tr>
+         </table>
+         <table class="table">
+            <tr>
+               <button onclick="calcPrimary()">Calculate all CPs spent on Primary Attributes</button>
+            </tr>
+         </table>
+         <table class="table">
+            <tr>
+               <th>Power CPs</th>
+               <th>
+               <td><input type="number" placeholder="0" id="allPower"></td>
+            </tr>
+         </table>
+         <table class="table">
+            <tr>
+               <button onclick="calcAllTotalCPs('allPower', 'power1Total', 'power2Total', 'power3Total', 'power4Total', 'power5Total', 'power6Total',
+    'power7Total', 'power8Total', 'power9Total', 'power10Total')">Calculate all CPs spent on Powers</button>
+            </tr>
+         </table>
+         <table class="table">
+            <tr>
+               <th>Skill CPs</th>
+               <th>
+               <td><input type="number" placeholder="0" id="allSkills"></td>
+            </tr>
+         </table>
+         <table class="table">
+            <tr>
+               <button onclick="calcAllTotalCPs('allSkills', 'skill1Total', 'skill2Total', 'skill3Total', 'skill4Total', 'skill5Total', 'skill6Total',
+                    'skill7Total', 'skill8Total', 'skill9Total', 'skill10Total')">Calculate all CPs spent on Skills</button>
+            </tr>
+         </table>
+         <table class="table">
+            <tr>
+               <th>Perk CPs</th>
+               <th>
+               <td><input type="number" placeholder="0" id="allPerks"></td>
+            </tr>
+         </table>
+         <table class="table">
+            <tr>
+               <button onclick="calcAllTotalCPs('allPerks', 'perk1BaseCost', 'perk2BaseCost', 'perk3BaseCost', 'perk4BaseCost', 'perk5BaseCost', 'perk6BaseCost',
+    'perk7BaseCost', 'perk8BaseCost', 'perk9BaseCost', 'perk10BaseCost')">Calculate all CPs spent on Perks</button>
+            </tr>
+         </table>
+         <table class="table">
+            <tr>
+               <th>Drawback CPs</th>
+               <th>
+               <td><input type="number" placeholder="0" id="allDrawbacks"></td>
+            </tr>
+         </table>
+         <table class="table">
+            <tr>
+               <button onclick="calcAllTotalCPs('allDrawbacks', 'drawback1BaseCost', 'drawback2BaseCost', 'drawback3BaseCost', 'drawback4BaseCost', 'drawback5BaseCost', 'drawback6BaseCost',
+    'drawback7BaseCost', 'drawback8BaseCost', 'drawback9BaseCost', 'drawback10BaseCost')">Calculate all CPs gained by Drawbacks</button>
+            </tr>
+         </table>
+         <table class="table">
+            <tr>
+               <th>Hero Points</th>
+               <th>
+               <td><input type="number" placeholder="0" id="heroPoints"></td>
+            </tr>
+         </table>
+         <table class="table">
+            <tr>
+               <th>Power Level</th>
+               <th>
+               <td><input type="number" placeholder="0" id="powerLevel" onchange="calcHeroPoints()"></td>
+            </tr>
+         </table>
+         <table class="table">
+            <tr>
+               <th>Total CPs</th>
+               <th>
+               <td><input type="number" placeholder="0" id="allCPs"></td>
+            </tr>
+         </table>
+         <table class="table">
+            <tr>
+               <button onclick="calcTotalCPs()">Calculate all CPs spent</button>
+            </tr>
+         </table>
+         <br><br><br>
+         <table class="table">
+            <tr>
+               <th>Health and Determination</th>
+               <th>Value</th>
+            </tr>
+            <tr>
+               <td>Health</td>
+               <td><input type="number" placeholder="0" id="healthScore"></td>
+            </tr>
+            <tr>
+               <td>Health Recovery</td>
+               <td><input type="number" placeholder="0" id="healthRecScore"></td>
+            </tr>
+            <tr>
+               <td>Determination</td>
+               <td><input type="number" placeholder="0" id="detScore"></td>
+            </tr>
+            <tr>
+               <td>Determination Recovery</td>
+               <td><input type="number" placeholder="0" id="detRecScore"></td>
+            </tr>
+         </table>
+      </div>
+      <div class="col-10">
+         <table class="table">
+            <tr>
+               <th>Powers and Modifiers</th>
+               <th>Base Cost</th>
+               <th>Variable Cost</th>
+               <th>Base Score</th>
+               <th>SP</th>
+               <th>Final Cost</th>
+            </tr>
+            <tr>
+               <td><input type="text" id="power1Name"></td>
+               <td><input type="number" placeholder="0" id="power1BaseCost"></td>
+               <td><input type="number" placeholder="0" id="power1VarCost"></td>
+               <td><input type="number" placeholder="0" id="power1BaseScore"></td>
+               <td><input type="number" placeholder="0" id="power1SP" onchange="calcPowers()"></td>
+               <td><input type="number" placeholder="0" id="power1Total"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="power2Name"></td>
+               <td><input type="number" placeholder="0" id="power2BaseCost"></td>
+               <td><input type="number" placeholder="0" id="power2VarCost"></td>
+               <td><input type="number" placeholder="0" id="power2BaseScore"></td>
+               <td><input type="number" placeholder="0" id="power2SP" onchange="calcPowers()"></td>
+               <td><input type="number" placeholder="0" id="power2Total"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="power3Name"></td>
+               <td><input type="number" placeholder="0" id="power3BaseCost"></td>
+               <td><input type="number" placeholder="0" id="power3VarCost"></td>
+               <td><input type="number" placeholder="0" id="power3BaseScore"></td>
+               <td><input type="number" placeholder="0" id="power3SP" onchange="calcPowers()"></td>
+               <td><input type="number" placeholder="0" id="power3Total"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="power4Name"></td>
+               <td><input type="number" placeholder="0" id="power4BaseCost"></td>
+               <td><input type="number" placeholder="0" id="power4VarCost"></td>
+               <td><input type="number" placeholder="0" id="power4BaseScore"></td>
+               <td><input type="number" placeholder="0" id="power4SP" onchange="calcPowers()"></td>
+               <td><input type="number" placeholder="0" id="power4Total"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="power5Name"></td>
+               <td><input type="number" placeholder="0" id="power5BaseCost"></td>
+               <td><input type="number" placeholder="0" id="power5VarCost"></td>
+               <td><input type="number" placeholder="0" id="power5BaseScore"></td>
+               <td><input type="number" placeholder="0" id="power5SP" onchange="calcPowers()"></td>
+               <td><input type="number" placeholder="0" id="power5Total"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="power6Name"></td>
+               <td><input type="number" placeholder="0" id="power6BaseCost"></td>
+               <td><input type="number" placeholder="0" id="power6VarCost"></td>
+               <td><input type="number" placeholder="0" id="power6BaseScore"></td>
+               <td><input type="number" placeholder="0" id="power6SP" onchange="calcPowers()"></td>
+               <td><input type="number" placeholder="0" id="power6Total"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="power7Name"></td>
+               <td><input type="number" placeholder="0" min=0 id="power7BaseCost"></td>
+               <td><input type="number" placeholder="0" min=0 id="power7VarCost"></td>
+               <td><input type="number" placeholder="0" min=0 id="power7BaseScore"></td>
+               <td><input type="number" placeholder="0" min=0 id="power7SP" onchange="calcPowers()"></td>
+               <td><input type="number" placeholder="0" min=0 id="power7Total"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="power8Name"></td>
+               <td><input type="number" placeholder="0" id="power8BaseCost"></td>
+               <td><input type="number" placeholder="0" id="power8VarCost"></td>
+               <td><input type="number" placeholder="0" id="power8BaseScore"></td>
+               <td><input type="number" placeholder="0" id="power8SP" onchange="calcPowers()"></td>
+               <td><input type="number" placeholder="0" id="power8Total"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="power9Name"></td>
+               <td><input type="number" placeholder="0" id="power9BaseCost"></td>
+               <td><input type="number" placeholder="0" id="power9VarCost"></td>
+               <td><input type="number" placeholder="0" id="power9BaseScore"></td>
+               <td><input type="number" placeholder="0" id="power9SP" onchange="calcPowers()"></td>
+               <td><input type="number" placeholder="0" id="power9Total"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="power10Name"></td>
+               <td><input type="number" placeholder="0" id="power10BaseCost"></td>
+               <td><input type="number" placeholder="0" id="power10VarCost"></td>
+               <td><input type="number" placeholder="0" id="power10BaseScore"></td>
+               <td><input type="number" placeholder="0" id="power10SP" onchange="calcPowers()"></td>
+               <td><input type="number" placeholder="0" id="power10Total"></td>
+            </tr>
+         </table>
+         <table class="table">
+            <tr>
+               <th>Skills</th>
+               <th>Base Cost</th>
+               <th>Variable Cost</th>
+               <th>Base Score</th>
+               <th>SP</th>
+               <th>Final Cost</th>
+            </tr>
+            <tr>
+               <td><input type="text" id="skill1Name"></td>
+               <td><input type="number" placeholder="0" id="skill1BaseCost"></td>
+               <td><input type="number" placeholder="0" id="skill1VarCost"></td>
+               <td><input type="number" placeholder="0" id="skill1BaseScore"></td>
+               <td><input type="number" placeholder="0" id="skill1SP" onchange="calcSkills()"></td>
+               <td><input type="number" placeholder="0" id="skill1Total"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="skill2Name"></td>
+               <td><input type="number" placeholder="0" id="skill2BaseCost"></td>
+               <td><input type="number" placeholder="0" id="skill2VarCost"></td>
+               <td><input type="number" placeholder="0" id="skill2BaseScore"></td>
+               <td><input type="number" placeholder="0" id="skill2SP" onchange="calcSkills()"></td>
+               <td><input type="number" placeholder="0" id="skill2Total"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="skill3Name"></td>
+               <td><input type="number" placeholder="0" id="skill3BaseCost"></td>
+               <td><input type="number" placeholder="0" id="skill3VarCost"></td>
+               <td><input type="number" placeholder="0" id="skill3BaseScore"></td>
+               <td><input type="number" placeholder="0" id="skill3SP" onchange="calcSkills()"></td>
+               <td><input type="number" placeholder="0" id="skill3Total"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="skill4Name"></td>
+               <td><input type="number" placeholder="0" id="skill4BaseCost"></td>
+               <td><input type="number" placeholder="0" id="skill4VarCost"></td>
+               <td><input type="number" placeholder="0" id="skill4BaseScore"></td>
+               <td><input type="number" placeholder="0" id="skill4SP" onchange="calcSkills()"></td>
+               <td><input type="number" placeholder="0" id="skill4Total"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="skill5Name"></td>
+               <td><input type="number" placeholder="0" id="skill5BaseCost"></td>
+               <td><input type="number" placeholder="0" id="skill5VarCost"></td>
+               <td><input type="number" placeholder="0" id="skill5BaseScore"></td>
+               <td><input type="number" placeholder="0" id="skill5SP" onchange="calcSkills()"></td>
+               <td><input type="number" placeholder="0" id="skill5Total"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="skill6Name"></td>
+               <td><input type="number" placeholder="0" id="skill6BaseCost"></td>
+               <td><input type="number" placeholder="0" id="skill6VarCost"></td>
+               <td><input type="number" placeholder="0" id="skill6BaseScore"></td>
+               <td><input type="number" placeholder="0" id="skill6SP" onchange="calcSkills()"></td>
+               <td><input type="number" placeholder="0" id="skill6Total"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="skill7Name"></td>
+               <td><input type="number" placeholder="0" id="skill7BaseCost"></td>
+               <td><input type="number" placeholder="0" id="skill7VarCost"></td>
+               <td><input type="number" placeholder="0" id="skill7BaseScore"></td>
+               <td><input type="number" placeholder="0" id="skill7SP" onchange="calcSkills()"></td>
+               <td><input type="number" placeholder="0" id="skill7Total"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="skill8Name"></td>
+               <td><input type="number" placeholder="0" id="skill8BaseCost"></td>
+               <td><input type="number" placeholder="0" id="skill8VarCost"></td>
+               <td><input type="number" placeholder="0" id="skill8BaseScore"></td>
+               <td><input type="number" placeholder="0" id="skill8SP" onchange="calcSkills()"></td>
+               <td><input type="number" placeholder="0" id="skill8Total"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="skill9Name"></td>
+               <td><input type="number" placeholder="0" id="skill9BaseCost"></td>
+               <td><input type="number" placeholder="0" id="skill9VarCost"></td>
+               <td><input type="number" placeholder="0" id="skill9BaseScore"></td>
+               <td><input type="number" placeholder="0" id="skill9SP" onchange="calcSkills()"></td>
+               <td><input type="number" placeholder="0" id="skill9Total"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="skill10Name"></td>
+               <td><input type="number" placeholder="0" id="skill10BaseCost"></td>
+               <td><input type="number" placeholder="0" id="skill10VarCost"></td>
+               <td><input type="number" placeholder="0" id="skill10BaseScore"></td>
+               <td><input type="number" placeholder="0" id="skill10SP" onchange="calcSkills()"></td>
+               <td><input type="number" placeholder="0" id="skill10Total"></td>
+            </tr>
+         </table>
+         <table class="table">
+            <tr>
+               <th>Perks and Drawbacks</th>
+               <th>Base Cost</th>
+            </tr>
+            <tr>
+               <th>Perks</th>
+            <tr>
+               <td><input type="text" id="perk1Name"></td>
+               <td><input type="number" placeholder="0" id="perk1BaseCost"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="perk2Name"></td>
+               <td><input type="number" placeholder="0" id="perk2BaseCost"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="perk3Name"></td>
+               <td><input type="number" placeholder="0" id="perk3BaseCost"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="perk4Name"></td>
+               <td><input type="number" placeholder="0" id="perk4BaseCost"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="perk5Name"></td>
+               <td><input type="number" placeholder="0" id="perk5BaseCost"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="perk6Name"></td>
+               <td><input type="number" placeholder="0" id="perk6BaseCost"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="perk7Name"></td>
+               <td><input type="number" placeholder="0" id="perk7BaseCost"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="perk8Name"></td>
+               <td><input type="number" placeholder="0" id="perk8BaseCost"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="perk9Name"></td>
+               <td><input type="number" placeholder="0" id="perk9BaseCost"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="perk10Name"></td>
+               <td><input type="number" placeholder="0" id="perk10BaseCost"></td>
+            </tr>
+            <tr>
+               <th>Drawbacks</th>
+            <tr>
+               <td><input type="text" id="drawback1Name"></td>
+               <td><input type="number" placeholder="0" id="drawback1BaseCost"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="drawback2Name"></td>
+               <td><input type="number" placeholder="0" id="drawback2BaseCost"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="drawback3Name"></td>
+               <td><input type="number" placeholder="0" id="drawback3BaseCost"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="drawback4Name"></td>
+               <td><input type="number" placeholder="0" id="drawback4BaseCost"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="drawback5Name"></td>
+               <td><input type="number" placeholder="0" id="drawback5BaseCost"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="drawback6Name"></td>
+               <td><input type="number" placeholder="0" id="drawback6BaseCost"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="drawback7Name"></td>
+               <td><input type="number" placeholder="0" id="drawback7BaseCost"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="drawback8Name"></td>
+               <td><input type="number" placeholder="0" id="drawback8BaseCost"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="drawback9Name"></td>
+               <td><input type="number" placeholder="0" id="drawback9BaseCost"></td>
+            </tr>
+            <tr>
+               <td><input type="text" id="drawback10Name"></td>
+               <td><input type="number" placeholder="0" id="drawback10BaseCost"></td>
+            </tr>
+         </table>
+      </div>
+
+      <script src="./script.js"></script>
+</body>
+</html>
