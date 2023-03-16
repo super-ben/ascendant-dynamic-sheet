@@ -1,48 +1,50 @@
-.table-container {
-  display: flex;
-  flex-wrap: wrap;
+/* Set font family and font size for entire page */
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
 }
 
+/* Set colors for headers */
+h1 {
+  color: #ff0000;
+}
+
+h2 {
+  color: black;
+  font-weight: bold;
+}
+
+/* Set colors for tables */
 .table {
-  width: 50%;
-  margin-bottom: 20px;
-}
-
-td {
-  width: 50%;
-}
-
-
-table {
+  background-color: #f2f2f2;
   border-collapse: collapse;
+  margin-bottom: 20px;
   width: 100%;
 }
 
-tr {
-  height: 40px;
-}
-
-th, td {
-  text-align: left;
-  padding: 10px;
-  border: 1px solid #ddd;
-  font-size: 14px;
-  font-weight: 500;
-}
-
+/* Set colors for table headers */
 th {
-  background-color: #FF0000;
+  background-color: #ff0000;
   color: white;
-  font-size: 16px;
   font-weight: 600;
+  padding: 10px;
+  text-align: left;
 }
 
-tr:nth-child(even){background-color: #f2f2f2}
-
-tr:hover {
-  background-color: #ddd;
+/* Set colors for table cells */
+td {
+  border: 1px solid #ddd;
+  font-weight: 500;
+  padding: 10px;
+  text-align: left;
 }
 
+/* Set alternate row colors */
+tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+/* Set styles for button */
 button {
   padding: 5px 10px;
   border: 1px solid #FF0000;
@@ -54,5 +56,25 @@ button {
 button:hover {
   background-color: #FF0000;
   color: white;
+}
+
+/* Set layout for tables */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.left {
+  width: calc(50% - 10px);
+}
+
+.right {
+  width: calc(50% - 10px);
+}
+
+.right:last-child {
+  width: 100%;
+  margin-top: 20px;
 }
 

@@ -1,6 +1,10 @@
 "use strict";
+
+// Get element by ID helper function
+const numGetById = (id) => Number(document.getElementById(id).value);
+
 const calcMigScore = () => {
-  const updateMigScore = Number(document.getElementById("migScore").value) * 10;
+  const updateMigScore = numGetById("migScore") * 10;
   calcWeight();
   calcJumpSpeed();
   calcCarrCapacity();
@@ -14,19 +18,19 @@ const calcMigScore = () => {
 };
 
 const calcAgiScore = () => {
-  const updateAgiScore = Number(document.getElementById("agiScore").value) * 10;
+  const updateAgiScore = numGetById("agiScore") * 10;
   calcRunSpeed();
   return updateAgiScore;
 };
 
 const calcValScore = () => {
-  const updateValScore = Number(document.getElementById("valScore").value) * 10;
+  const updateValScore = numGetById("valScore") * 10;
   calcInitiative();
   return updateValScore;
 };
 
 const calcResScore = () => {
-  const updateResScore = Number(document.getElementById("resScore").value) * 10;
+  const updateResScore = numGetById("resScore") * 10;
   calcPassiveSpotting();
   calcHealthDet(healthDetScoreMap, "resScore", "detScore");
   calcHealthDetRecovery(healthDetRecoveryScoreMap, "resScore", "detRecScore");
@@ -34,12 +38,11 @@ const calcResScore = () => {
 };
 
 const calcInsScore = () => {
-  return Number(document.getElementById("insScore").value) * 10;
+  return numGetById("insScore") * 10;
 };
 
 function calcCharScore() {
-  const updateCharScore =
-    Number(document.getElementById("charScore").value) * 10;
+  const updateCharScore = numGetById("charScore") * 10;
   calcReputation();
   return updateCharScore;
 }
@@ -56,7 +59,7 @@ const calcPrimary = () => {
 };
 
 const calcWeight = () => {
-  if (Number(document.getElementById("migScore").value) > 3) {
+  if (numGetById("migScore") > 3) {
     document.getElementById("weightScore").value = 3;
   } else {
     document.getElementById("weightScore").value =
@@ -65,16 +68,9 @@ const calcWeight = () => {
 };
 
 const calcRunSpeed = () => {
-  if (
-    Number(document.getElementById("agiScore").value) +
-      3 -
-      Number(document.getElementById("weightScore").value) <
-    5
-  ) {
+  if (numGetById("agiScore") + 3 - numGetById("weightScore") < 5) {
     document.getElementById("runSpeedScore").value =
-      Number(document.getElementById("agiScore").value) +
-      3 -
-      Number(document.getElementById("weightScore").value);
+      numGetById("agiScore") + 3 - numGetById("weightScore");
   } else {
     document.getElementById("runSpeedScore").value = 5;
   }
@@ -82,25 +78,19 @@ const calcRunSpeed = () => {
 
 const calcJumpSpeed = () => {
   document.getElementById("jumpSpeedScore").value =
-    Number(document.getElementById("migScore").value) -
-    Number(document.getElementById("weightScore").value);
+    numGetById("migScore") - numGetById("weightScore");
 };
 
 function calcCarrCapacity() {
-  document.getElementById("carrCapScore").value =
-    Number(document.getElementById("migScore").value) - 3;
+  document.getElementById("carrCapScore").value = numGetById("migScore") - 3;
 }
 
 const calcInitiative = () => {
-  document.getElementById("iniScore").value = Number(
-    document.getElementById("valScore").value
-  );
+  document.getElementById("iniScore").value = numGetById("valScore");
 };
 
 const calcReputation = () => {
-  document.getElementById("repScore").value = Number(
-    document.getElementById("charScore").value
-  );
+  document.getElementById("repScore").value = numGetById("charScore");
 };
 
 const calcPassiveSpotting = () => {
@@ -315,16 +305,16 @@ function calcAllTotalCPs(
   total10
 ) {
   document.getElementById(all).value =
-    Number(document.getElementById(total1).value) +
-    Number(document.getElementById(total2).value) +
-    Number(document.getElementById(total3).value) +
-    Number(document.getElementById(total4).value) +
-    Number(document.getElementById(total5).value) +
-    Number(document.getElementById(total6).value) +
-    Number(document.getElementById(total7).value) +
-    Number(document.getElementById(total8).value) +
-    Number(document.getElementById(total9).value) +
-    Number(document.getElementById(total10).value);
+    numGetById(total1) +
+    numGetById(total2) +
+    numGetById(total3) +
+    numGetById(total4) +
+    numGetById(total5) +
+    numGetById(total6) +
+    numGetById(total7) +
+    numGetById(total8) +
+    numGetById(total9) +
+    numGetById(total10);
 }
 
 function calcSP(
@@ -380,63 +370,43 @@ function calcSP(
   baseC10
 ) {
   document.getElementById(final1).value =
-    Number(document.getElementById(varC1).value) *
-      (Number(document.getElementById(sp1).value) -
-        Number(document.getElementById(baseS1).value)) +
-    Number(document.getElementById(baseC1).value);
+    numGetById(varC1) * (numGetById(sp1) - numGetById(baseS1)) +
+    numGetById(baseC1);
   document.getElementById(final2).value =
-    Number(document.getElementById(varC2).value) *
-      (Number(document.getElementById(sp2).value) -
-        Number(document.getElementById(baseS2).value)) +
-    Number(document.getElementById(baseC2).value);
+    numGetById(varC2) * (numGetById(sp2) - numGetById(baseS2)) +
+    numGetById(baseC2);
   document.getElementById(final3).value =
-    Number(document.getElementById(varC3).value) *
-      (Number(document.getElementById(sp3).value) -
-        Number(document.getElementById(baseS3).value)) +
-    Number(document.getElementById(baseC3).value);
+    numGetById(varC3) * (numGetById(sp3) - numGetById(baseS3)) +
+    numGetById(baseC3);
   document.getElementById(final4).value =
-    Number(document.getElementById(varC4).value) *
-      (Number(document.getElementById(sp4).value) -
-        Number(document.getElementById(baseS4).value)) +
-    Number(document.getElementById(baseC4).value);
+    numGetById(varC4) * (numGetById(sp4) - numGetById(baseS4)) +
+    numGetById(baseC4);
   document.getElementById(final5).value =
-    Number(document.getElementById(varC5).value) *
-      (Number(document.getElementById(sp5).value) -
-        Number(document.getElementById(baseS5).value)) +
-    Number(document.getElementById(baseC5).value);
+    numGetById(varC5) * (numGetById(sp5) - numGetById(baseS5)) +
+    numGetById(baseC5);
   document.getElementById(final6).value =
-    Number(document.getElementById(varC6).value) *
-      (Number(document.getElementById(sp6).value) -
-        Number(document.getElementById(baseS6).value)) +
-    Number(document.getElementById(baseC6).value);
+    numGetById(varC6) * (numGetById(sp6) - numGetById(baseS6)) +
+    numGetById(baseC6);
   document.getElementById(final7).value =
-    Number(document.getElementById(varC7).value) *
-      (Number(document.getElementById(sp7).value) -
-        Number(document.getElementById(baseS7).value)) +
-    Number(document.getElementById(baseC7).value);
+    numGetById(varC7) * (numGetById(sp7) - numGetById(baseS7)) +
+    numGetById(baseC7);
   document.getElementById(final8).value =
-    Number(document.getElementById(varC8).value) *
-      (Number(document.getElementById(sp8).value) -
-        Number(document.getElementById(baseS8).value)) +
-    Number(document.getElementById(baseC8).value);
+    numGetById(varC8) * (numGetById(sp8) - numGetById(baseS8)) +
+    numGetById(baseC8);
   document.getElementById(final9).value =
-    Number(document.getElementById(varC9).value) *
-      (Number(document.getElementById(sp9).value) -
-        Number(document.getElementById(baseS9).value)) +
-    Number(document.getElementById(baseC9).value);
+    numGetById(varC9) * (numGetById(sp9) - numGetById(baseS9)) +
+    numGetById(baseC9);
   document.getElementById(final10).value =
-    Number(document.getElementById(varC10).value) *
-      (Number(document.getElementById(sp10).value) -
-        Number(document.getElementById(baseS10).value)) +
-    Number(document.getElementById(baseC10).value);
+    numGetById(varC10) * (numGetById(sp10) - numGetById(baseS10)) +
+    numGetById(baseC10);
 }
 
 const calcTotalCPs = () => {
   const totalCPs =
-    Number(document.getElementById("primAtCost").value) +
-    Number(document.getElementById("allPower").value) +
-    Number(document.getElementById("allSkills").value) +
-    Number(document.getElementById("allPerks").value) -
-    Number(document.getElementById("allDrawbacks").value);
+    numGetById("primAtCost") +
+    numGetById("allPower") +
+    numGetById("allSkills") +
+    numGetById("allPerks") -
+    numGetById("allDrawbacks");
   document.getElementById("allCPs").value = totalCPs;
 };
