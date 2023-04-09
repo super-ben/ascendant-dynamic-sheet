@@ -99,7 +99,7 @@ const calcPassiveSpotting = () => {
 
 const calcHeroPoints = () => {
   document.getElementById("heroPoints").value =
-    2 * (document.getElementById("powerLevel").value - 12);
+    2 * (document.getElementById("powerLimit").value - 12);
 };
 
 const healthDetScoreMap = new Map([
